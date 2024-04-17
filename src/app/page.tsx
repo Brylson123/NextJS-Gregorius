@@ -1,5 +1,8 @@
+import Nav from "@/app/components/Nav/Nav";
+
 export default function Home() {
   return (
-    <h1>develop</h1>
-  );
+    <div>
+      <Nav/>
+    </div>
 }
