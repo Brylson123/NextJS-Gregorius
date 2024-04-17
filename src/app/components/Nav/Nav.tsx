@@ -1,4 +1,5 @@
 "use client";
+
 import React, {useState} from "react";
 import {Menu, X} from "lucide-react";
 import {clsx} from "clsx"
@@ -8,6 +9,7 @@ const navigation = [
     {name: 'O nas', href: '#about'},
     {name: 'Kontakt', href: '#contact'},
 ]
+
 export default function Nav() {
     const [isOpen, setIsOpen] = useState(false);
 
