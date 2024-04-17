@@ -1,12 +1,11 @@
 "use client";
 import {useState} from "react";
-import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import Image from "next/image";
+import {Dialog} from '@headlessui/react'
+import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 
 const navigation = [
-    { name: 'O nas', href: '#' },
-    { name: 'Kontakt', href: '#' },
+    {name: 'O nas', href: '#'},
+    {name: 'Kontakt', href: '#'},
 ]
 export default function Nav() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -15,10 +14,7 @@ export default function Nav() {
         <header className="fixed inset-x-0 top-0 z-50">
             <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
-
-                        <span className="font-bold">Gregorius</span>
-
-
+                    <span className="font-bold text-2xl">Gregorius</span>
                 </div>
                 <div className="flex lg:hidden">
                     <button
@@ -27,20 +23,21 @@ export default function Nav() {
                         onClick={() => setMobileMenuOpen(true)}
                     >
                         <span className="sr-only">Open main menu</span>
-                        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                        <Bars3Icon className="h-6 w-6" aria-hidden="true"/>
                     </button>
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
                     {navigation.map((item) => (
-                        <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
+                        <a key={item.name} href={item.href} className="text-2xl font-semibold leading-6 text-gray-900">
                             {item.name}
                         </a>
                     ))}
                 </div>
             </nav>
             <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-                <div className="fixed inset-0 z-50" />
-                <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                <div className="fixed inset-0 z-50"/>
+                <Dialog.Panel
+                    className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                     <div className="flex items-center justify-between">
                         <a href="#" className="-m-1.5 p-1.5">
                             <span className="font-bold">Gregorius</span>
@@ -52,7 +49,7 @@ export default function Nav() {
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             <span className="sr-only">Close menu</span>
-                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                            <XMarkIcon className="h-6 w-6" aria-hidden="true"/>
                         </button>
                     </div>
                     <div className="mt-6 flow-root">
