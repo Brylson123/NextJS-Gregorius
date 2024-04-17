@@ -1,74 +1,87 @@
 "use client";
-import {useState} from "react";
-import {Dialog} from '@headlessui/react'
-import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
+
+import React, {useState} from "react";
+import {Menu, X} from "lucide-react";
+import {clsx} from "clsx"
+import Link from "next/link";
 
 const navigation = [
-    {name: 'O nas', href: '#'},
-    {name: 'Kontakt', href: '#'},
+    {name: 'O nas', href: '#about'},
+    {name: 'Kontakt', href: '#contact'},
 ]
+
 export default function Nav() {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header className="fixed inset-x-0 top-0 z-50">
-            <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-                <div className="flex lg:flex-1">
-                    <span className="font-bold text-2xl">Gregorius</span>
-                </div>
-                <div className="flex lg:hidden">
-                    <button
-                        type="button"
-                        className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-                        onClick={() => setMobileMenuOpen(true)}
-                    >
-                        <span className="sr-only">Open main menu</span>
-                        <Bars3Icon className="h-6 w-6" aria-hidden="true"/>
-                    </button>
-                </div>
-                <div className="hidden lg:flex lg:gap-x-12">
-                    {navigation.map((item) => (
-                        <a key={item.name} href={item.href} className="text-2xl font-semibold leading-6 text-gray-900">
-                            {item.name}
-                        </a>
-                    ))}
-                </div>
-            </nav>
-            <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-                <div className="fixed inset-0 z-50"/>
-                <Dialog.Panel
-                    className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-                    <div className="flex items-center justify-between">
-                        <a href="#" className="-m-1.5 p-1.5">
-                            <span className="font-bold">Gregorius</span>
+        <nav
+            className={clsx(
+                "border-secondary-b fixed z-20 flex w-full items-center border-b-2 bg-transparent py-5 backdrop-blur-lg backdrop-filter",
+            )}
+        >
+            <div
+                className="mx-auto flex w-full max-w-7xl items-center justify-between"
 
-                        </a>
-                        <button
-                            type="button"
-                            className="-m-2.5 rounded-md p-2.5 text-gray-700"
-                            onClick={() => setMobileMenuOpen(false)}
-                        >
-                            <span className="sr-only">Close menu</span>
-                            <XMarkIcon className="h-6 w-6" aria-hidden="true"/>
+            >
+                <Link href="/">
+                    <p className="text-blue-gradient cursor-pointer text-lg font-bold md:text-xl">
+                        Gregorius
+                    </p>
+                </Link>
+
+                {/* desktop navigation */}
+                <div className="hidden gap-9 md:flex">
+                    <ul className="flex list-none gap-9">
+                        {navigation.map((link) => (
+                            <li
+                                key={link.name}
+                            >
+                                <a href={`${link.href}`}>{(link.name)}</a>
+                            </li>
+                        ))}
+                    </ul>
+
+                </div>
+
+                {/* mobile navigation */}
+                <div className="flex flex-1 items-center justify-end md:hidden">
+                    {isOpen ? (
+                        <button onClick={() => setIsOpen(false)}>
+                            <X
+                                size={25}
+                                className="text-blue-gradient hover:text-blue-accent transition-colors"
+                            />
                         </button>
+                    ) : (
+                        <button onClick={() => setIsOpen(true)}>
+                            <Menu
+                                size={25}
+                                className="text-blue-gradient hover:text-blue-accent transition-colors"
+                            />
+                        </button>
+                    )}
+                    <div
+                        className={clsx(
+                            !isOpen ? "hidden" : "flex",
+                            "bg-blue-200 absolute top-20 z-10 mx-4 my-1 min-w-[140px] flex-col gap-3 rounded-xl p-6 shadow-lg",
+                        )}
+                    >
+                        <ul className="flex list-none flex-col items-end justify-center gap-4">
+                            {navigation.map((link) => (
+                                <li
+                                    key={link.name}
+                                    onClick={() => {
+                                        setIsOpen(false);
+
+                                    }}
+                                >
+                                    <a href={`${link.href}`}>{(link.name)}</a>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
-                    <div className="mt-6 flow-root">
-                        <div className="-my-6 divide-y divide-gray-500/10">
-                            <div className="space-y-2 py-6">
-                                {navigation.map((item) => (
-                                    <a
-                                        key={item.name}
-                                        href={item.href}
-                                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                                    >
-                                        {item.name}
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </Dialog.Panel>
-            </Dialog>
-        </header>
+                </div>
+            </div>
+        </nav>
     )
 }
