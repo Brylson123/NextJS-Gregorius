@@ -10,7 +10,7 @@ const stats = [
     {id: 3, name: 'Zadowolonych klientów', value: 1000},
 ]
 
-function Count({n}: { n: number }) {
+const Count = ({n}: { n: number }) => {
     const [displayAnimation, setDisplayAnimation] = useState(false);
     const {ref, inView} = useInView({});
 
@@ -30,7 +30,7 @@ function Count({n}: { n: number }) {
             {number.to((n) => n.toFixed(0))}
         </animated.span>
     );
-}
+};
 
 export default function Stats() {
     return (
