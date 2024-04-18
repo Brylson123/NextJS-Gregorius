@@ -1,7 +1,7 @@
 import Nav from "@/app/components/layouts/Nav";
 import Header from "@/app/components/layouts/Header";
 import Stats from "@/app/components/layouts/Stats";
-import {Pricing} from "@/app/components/layouts/Pricing";
+import Pricing from "@/app/components/layouts/Pricing";
 import Contact from "@/app/components/layouts/Contact";
 import {Toaster} from "react-hot-toast";
 
