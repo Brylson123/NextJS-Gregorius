@@ -1,8 +1,8 @@
-import Nav from "@/app/components/Nav/Nav";
-import Header from "@/app/components/Header/Header";
-import Stats from "@/app/components/Stats/Stats";
-import {Pricing} from "@/app/components/Pricing/Pricing";
-import Contact from "@/app/components/Contact/Contact";
+import Nav from "@/app/components/layouts/Nav";
+import Header from "@/app/components/layouts/Header";
+import Stats from "@/app/components/layouts/Stats";
+import {Pricing} from "@/app/components/layouts/Pricing";
+import Contact from "@/app/components/layouts/Contact";
 import {Toaster} from "react-hot-toast";
 
 export default function Home() {
