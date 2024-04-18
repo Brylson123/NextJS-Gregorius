@@ -1,4 +1,4 @@
-export function Pricing() {
+const Pricing = () => {
     return (
         <div className="relative isolate overflow-hidden bg-blue-100 px-6 py-24 sm:py-32 lg:px-8">
             <div
@@ -22,3 +22,5 @@ export function Pricing() {
         </div>
     )
 }
+
+export default Pricing;

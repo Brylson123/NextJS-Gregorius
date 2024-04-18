@@ -3,7 +3,7 @@ import {ChangeEvent, FormEvent, useState} from "react";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
 
-export default  function ContactForm() {
+const ContactForm = () => {
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -12,8 +12,8 @@ export default  function ContactForm() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const changeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { value, name } = e.target;
-        setForm({ ...form, [name]: value });
+        const {value, name} = e.target;
+        setForm({...form, [name]: value});
     };
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -28,8 +28,8 @@ export default  function ContactForm() {
 
         emailjs
             .send(
-              `${process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID}`,
-               `${process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID}`,
+                `${process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID}`,
+                `${process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID}`,
                 {
                     from_name: form.name,
                     to_name: "Paweł Bryła",
@@ -56,50 +56,52 @@ export default  function ContactForm() {
                 },
             );
     };
-    return(
-            <form className="flex flex-col gap-8" onSubmit={submitHandler}>
-                <label className="flex flex-col">
-                    <span className="mb-4 font-medium text-primary-t">{("Imię")}</span>
-                    <input
-                        type="text"
-                        name="name"
-                        value={form.name}
-                        onChange={changeHandler}
-                        placeholder={("Imię")}
-                        className="rounded-lg border-none bg-secondary-b px-3 py-4 font-medium text-primary-t shadow-md outline-none placeholder:text-secondary-t md:px-6"
-                    />
-                </label>
-                <label className="flex flex-col">
-                    <span className="mb-4 font-medium text-primary-t">{("Email")}</span>
-                    <input
-                        type="email"
-                        name="email"
-                        value={form.email}
-                        onChange={changeHandler}
-                        placeholder={("Email")}
-                        className="rounded-lg border-none bg-secondary-b px-3 py-4 font-medium text-primary-t shadow-md outline-none placeholder:text-secondary-t md:px-6"
-                    />
-                </label>
+    return (
+        <form className="flex flex-col gap-8" onSubmit={submitHandler}>
+            <label className="flex flex-col">
+                <span className="mb-4 font-medium text-primary-t">{("Imię")}</span>
+                <input
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={changeHandler}
+                    placeholder={("Imię")}
+                    className="rounded-lg border-none bg-secondary-b px-3 py-4 font-medium text-primary-t shadow-md outline-none placeholder:text-secondary-t md:px-6"
+                />
+            </label>
+            <label className="flex flex-col">
+                <span className="mb-4 font-medium text-primary-t">{("Email")}</span>
+                <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={changeHandler}
+                    placeholder={("Email")}
+                    className="rounded-lg border-none bg-secondary-b px-3 py-4 font-medium text-primary-t shadow-md outline-none placeholder:text-secondary-t md:px-6"
+                />
+            </label>
 
-                <label className="flex flex-col">
-                    <span className="mb-4 font-medium text-primary-t">{("Wiadomość")}</span>
-                    <textarea
-                        rows={8}
-                        name="message"
-                        value={form.message}
-                        onChange={changeHandler}
-                        placeholder={("Treść twojej wiadomości")}
-                        className="resize-none rounded-lg border-none bg-secondary-b px-3 py-4 font-medium text-primary-t shadow-md outline-none placeholder:text-secondary-t md:px-6"
-                    />
-                </label>
-                <button
-                    type="submit"
-                    className="hover:bg-blue-500 w-fit rounded-xl bg-blue-300 px-8 py-3 font-bold text-tertiary-t shadow-xl outline-blue-100 transition-colors"
-                >
-                    {loading ? ("Wysyłanie") : ("Wyślij")}
-                </button>
-            </form>
+            <label className="flex flex-col">
+                <span className="mb-4 font-medium text-primary-t">{("Wiadomość")}</span>
+                <textarea
+                    rows={8}
+                    name="message"
+                    value={form.message}
+                    onChange={changeHandler}
+                    placeholder={("Treść twojej wiadomości")}
+                    className="resize-none rounded-lg border-none bg-secondary-b px-3 py-4 font-medium text-primary-t shadow-md outline-none placeholder:text-secondary-t md:px-6"
+                />
+            </label>
+            <button
+                type="submit"
+                className="hover:bg-blue-500 w-fit rounded-xl bg-blue-300 px-8 py-3 font-bold text-tertiary-t shadow-xl outline-blue-100 transition-colors"
+            >
+                {loading ? ("Wysyłanie") : ("Wyślij")}
+            </button>
+        </form>
 
 
     )
 }
+
+export default ContactForm;
