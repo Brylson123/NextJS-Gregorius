@@ -18,9 +18,9 @@ const callouts = [
         imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
     },
 ]
-export default function Header() {
+const Header = () => {
     return (
-        <header className="w-full h-full">
+        <header className="w-full h-full" id="about">
             <div className="bg-blue-100 h-full">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
@@ -53,3 +53,5 @@ export default function Header() {
         </header>
     )
 }
+
+export default Header;
