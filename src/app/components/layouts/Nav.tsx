@@ -10,7 +10,7 @@ const navigation = [
     {name: 'Kontakt', href: '#contact'},
 ]
 
-export default function Nav() {
+const Nav = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -85,3 +85,5 @@ export default function Nav() {
         </nav>
     )
 }
+
+export default Nav;

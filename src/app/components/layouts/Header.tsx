@@ -18,7 +18,7 @@ const callouts = [
         imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
     },
 ]
-export default function Header() {
+const Header = () => {
     return (
         <header className="w-full h-full" id="about">
             <div className="bg-blue-100 h-full">
@@ -53,3 +53,5 @@ export default function Header() {
         </header>
     )
 }
+
+export default Header;
